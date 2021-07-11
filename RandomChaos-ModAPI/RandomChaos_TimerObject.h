@@ -19,12 +19,12 @@ public:
 	~RandomChaos_TimerObject();
 
 	void Update() override;
-	void randomTool(bool addorremove);
-	void randomHealthEnergy(float amount, bool healthOrEnergy, float energyamount);
-	void randomMoney(bool highOrLow);
-	void randomPlanet();
-	void randomTScore();
-	void randomTravelDistance();
+	void spg_randomTool(bool addorremove);
+	void spg_randomHealthEnergy(float amount, bool healthOrEnergy, float energyamount);
+	void spg_randomMoney(bool highOrLow);
+	void spg_randomPlanet();
+	void spg_randomTScore();
+	void spg_randomTravelDistance();
 	//void newrandomplanet();
 	static RandomChaos_TimerObject* Get();
 

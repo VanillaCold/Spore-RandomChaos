@@ -33,11 +33,11 @@ void RandomChaos_TimerObject::Update()
 			if (healthorenergy == 1) { enamount = Math::randf(0, ufo->mMaxEnergy); }
 			else { amount = Math::randf(0, ufo->GetMaxHitPoints()); }
 				App::ConsolePrintF(to_string(clockelapsed).c_str());
-				if (chosenone == 1) { randomTool(true); App::ConsolePrintF("tool"); }
-				if (chosenone == 2) { App::ConsolePrintF("health/energy"); randomHealthEnergy(amount, healthorenergy, enamount); }
-				if (chosenone == 3) { App::ConsolePrintF("money"); randomMoney(thingy); }
-				if (chosenone == 4) { randomPlanet(); App::ConsolePrintF("teleport"); }
-				if (chosenone == 5) { randomTScore(); App::ConsolePrintF("tscore"); }
+				if (chosenone == 1) { spg_randomTool(true); App::ConsolePrintF("tool"); }
+				if (chosenone == 2) { App::ConsolePrintF("health/energy"); spg_randomHealthEnergy(amount, healthorenergy, enamount); }
+				if (chosenone == 3) { App::ConsolePrintF("money"); spg_randomMoney(thingy); }
+				if (chosenone == 4) { spg_randomPlanet(); App::ConsolePrintF("teleport"); }
+				if (chosenone == 5) { spg_randomTScore(); App::ConsolePrintF("tscore"); }
 				//if (chosenone == 6) { randomTravelDistance(); App::ConsolePrintF("travel distance"); }
 			}
 			ClockVar.Reset(); ClockVar.Start();
@@ -45,7 +45,7 @@ void RandomChaos_TimerObject::Update()
 	}
 }
 
-void RandomChaos_TimerObject::randomTool(bool addorremove)
+void RandomChaos_TimerObject::spg_randomTool(bool addorremove)
 {
 	//0xa91269af
 	cSpaceToolDataPtr tool;
@@ -78,7 +78,7 @@ void RandomChaos_TimerObject::randomTool(bool addorremove)
 
 }
 
-void RandomChaos_TimerObject::randomHealthEnergy(float amount, bool healthOrEnergy, float energyamount)
+void RandomChaos_TimerObject::spg_randomHealthEnergy(float amount, bool healthOrEnergy, float energyamount)
 {
 	auto ufo = Simulator::GetPlayerUFO();
 	if (healthOrEnergy == 0) {
@@ -98,7 +98,7 @@ void RandomChaos_TimerObject::randomHealthEnergy(float amount, bool healthOrEner
 	hasdoneeffect = true;
 }
 
-void RandomChaos_TimerObject::randomMoney(bool highOrLow)
+void RandomChaos_TimerObject::spg_randomMoney(bool highOrLow)
 {
 	auto empire = Simulator::GetPlayerEmpire();
 	int amounttoadd = 0;
@@ -111,7 +111,7 @@ void RandomChaos_TimerObject::randomMoney(bool highOrLow)
 	UIEventLog.SetDescription(eventID, u"Your money just got randomized!");
 }
 
-void RandomChaos_TimerObject::randomPlanet()
+void RandomChaos_TimerObject::spg_randomPlanet()
 {
 	auto context = Simulator::SpacePlayerData::Get()->mCurrentContext;
 	if (context != Simulator::kSpaceContextPlanet) {
@@ -128,7 +128,7 @@ void RandomChaos_TimerObject::randomPlanet()
 	UIEventLog.SetDescription(eventID, u"You just got teleported!");
 }
 
-void RandomChaos_TimerObject::randomTScore()
+void RandomChaos_TimerObject::spg_randomTScore()
 {
 	auto context = Simulator::SpacePlayerData::Get()->mCurrentContext;
 	if (Simulator::GetActivePlanetRecord()) {
@@ -151,7 +151,7 @@ void RandomChaos_TimerObject::randomTScore()
 	UIEventLog.SetDescription(eventID, u"The planet's T-Score just got randomized!");
 }
 
-void RandomChaos_TimerObject::randomTravelDistance()
+void RandomChaos_TimerObject::spg_randomTravelDistance()
 {
 	//doesn't work, ignore this one
 	auto empire = Simulator::GetPlayerEmpire();
