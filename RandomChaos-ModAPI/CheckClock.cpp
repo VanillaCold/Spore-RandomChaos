@@ -15,9 +15,9 @@ CheckClock::~CheckClock()
 void CheckClock::ParseLine(const ArgScript::Line& line)
 {
 	auto Game = GameModeManager.GetActiveModeID();
-	if (Game == kGGEMode){
+	if (true){
 		auto cv = RandomChaos_TimerObject::Get();
-		if (cv->ClockVar.IsRunning()) { cv->ClockVar.Reset(); cv->ClockVar.Pause();  App::ConsolePrintF("Chaos disabled."); }
+		if (cv->ClockVar.IsRunning()) { cv->ClockVar.Reset();  App::ConsolePrintF("Chaos disabled."); }
 		else { cv->ClockVar.Start(); App::ConsolePrintF("Chaos enabled! WARNING: Chaos may cause chaotic things!"); }
 	}
 	else { App::ConsolePrintF("Can only toggle Chaos Mode in the Global Game Entry. (aka the main menu)"); }
